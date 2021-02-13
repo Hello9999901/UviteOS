@@ -1,0 +1,25 @@
+{
+  "name": "uvite",
+  "version": "1.0.0",
+  "description": "Stream the Future",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Hello9999901/Uvite.git"
+  },
+  "keywords": [
+    "Uvite"
+  ],
+  "author": "Byran Huang",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/Hello9999901/Uvite/issues"
+  },
+  "homepage": "https://github.com/Hello9999901/Uvite#readme",
+  "dependencies": {
+    "xterm": "^4.10.0"
+  }
+}

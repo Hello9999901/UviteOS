@@ -1,11 +1,11 @@
 // target elements with the "draggable" class
 interact('.draggable')
 .draggable({
-listeners: {
-    // call this function on every dragmove event
-    move: dragMoveListener,
-}
-})
+    listeners: {
+            // call this function on every dragmove event
+            move: dragMoveListener,
+        }
+    })
 function dragMoveListener (event) {
 var target = event.target
 // keep the dragged position in the data-x/data-y attributes
