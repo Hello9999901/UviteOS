@@ -21,6 +21,7 @@ html, body {
     margin: 0px;
     height: 100%;
     z-index: 1;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 #drag-1, #drag-2{
     -webkit-touch-callout: none;
@@ -80,28 +81,60 @@ dock {
     justify-content: center;
 }
 #topbar {
-    position: fixed;
     text-align: left;
     width: 100%;
     height: 25px;
     background-color: rgba(255, 255, 255, 0.25);
     -webkit-backdrop-filter: blur(100px); /* Safari */
     backdrop-filter: blur(10px); /* Other Browsers */ 
+    z-index: 0;
+}
+#currentTimeHourMinSec {
+    font-size: 100px;
+    height: 100%;
+    color: white;
+    position: absolute;
+    width: 100%;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+#homeIcon {
+    width: 25px;
+    height: auto;
+    filter: invert(1);
+}
+#systemDropdown {
+    width: 100px;
+    position: absolute;
+}
+#topbarContainer {
+    margin: 0;
 }
 </style>
 
-
-<div id="topbar"></div>
-
+<div id="topbarContainer">
+    <div id="topbar">
+        <select id="systemDropdown" onchange="systemDropdownInterpreter()">
+            <option value="none" id="none"> </option>
+            <option value="shutdown" id="shutdown">Shutdown</option>
+            <option value="sleep" id="sleep">Sleep</option>
+            <option value="restart" id="restart">Restart</option>
+        </select>
+        <img id="homeIcon" src="media/Icons/UviteIcon.svg">
+    </div>
+</div>
 
 <body>
 
+    <div id="currentTimeHourMinSec"> </div>
     <div id="drag-1" class="resize-drag window">
         <button onclick="makeFullScreen();">Open Fullscreen</button>
     </div>
 
     <div id="drag-2" class="resize-drag window">
         <button onclick="makeFullScreen();">Open Fullscreen</button>
+        <a href="testing.html" target="_blank">testing.html</a>
     </div>
 
     <div id="drag-3" class="resize-drag window">
@@ -148,6 +181,33 @@ interact('.resize-drag')
   })
 </script>
 
+<script>
+    function systemDropdownInterpreter() {
+        var option = document.getElementById("systemDropdown");
+        var optionParsed = option.options[systemDropdown.selectedIndex].text
+        if (optionParsed == "Shutdown") {
+            alert("Shutdown")
+        }
+        else if (optionParsed == "Restart") {
+            alert("Restart")
+        }
+        else if (optionParsed == "Sleep") {
+            alert("Sleep")
+        }
+    }  
+</script>
+
+
+<!--CLOCK SCRIPT-->
+<script>
+    function getTime() {
+        var get = new Date();
+        currentTimeHourMinSec = get.getHours() + ':' + get.getMinutes() + ":" + get.getSeconds();
+        document.getElementById('currentTimeHourMinSec').innerHTML = currentTimeHourMinSec;
+        setTimeout(getTime, 100);
+    }
+    getTime();
+</script>
 
 
 
