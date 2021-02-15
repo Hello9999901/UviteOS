@@ -6,6 +6,7 @@
     <script src="https://cdn.jsdelivr.net/npm/interactjs/dist/interact.min.js"></script>
     <script src="js/draggable.js"></script>
     <script src="js/fullscreen.js"></script>
+    <link rel="stylesheet" href="test.css">
 </head>
 
 
@@ -64,6 +65,7 @@ html, body {
 }
 .dock {
     position: fixed;
+    bottom: 10px; /* Lift the dock, or else it is halfway inside the bottom edge */
     border-radius: 15px;
     text-align: center;
     width: 75%;
@@ -115,13 +117,14 @@ dock {
 
 <div id="topbarContainer">
     <div id="topbar">
-        <select id="systemDropdown" onchange="systemDropdownInterpreter()">
-            <option value="none" id="none"> </option>
-            <option value="shutdown" id="shutdown">Shutdown</option>
-            <option value="sleep" id="sleep">Sleep</option>
-            <option value="restart" id="restart">Restart</option>
-        </select>
-        <img id="homeIcon" src="media/Icons/UviteIcon.svg">
+        <div id="systemDropdownWrapper">
+            <select id="systemDropdown" onchange="systemDropdownInterpreter()">
+                <option value="none" id="none"> </option>
+                <option value="shutdown" id="shutdown">Shutdown</option>
+                <option value="sleep" id="sleep">Sleep</option>
+                <option value="restart" id="restart">Restart</option>
+            </select>
+        </div>
     </div>
 </div>
 
