@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <title>UviteOS - Stream the Future</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://cdn.jsdelivr.net/npm/interactjs/dist/interact.min.js"></script>
@@ -10,10 +11,13 @@
 </head>
 
 
-
-
-
 <style>
+/* CSS VARS */
+:root {
+    --window-bar-color: #fff;
+    --close-min-max-size: 22px;
+}
+
 html, body {
     background-image: url('media/default_bg.jpg');
     background-repeat: no-repeat;
@@ -24,7 +28,7 @@ html, body {
     z-index: 1;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
-#drag-1, #drag-2{
+#window-1{
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -khtml-user-select: none;
@@ -32,7 +36,7 @@ html, body {
     -ms-user-select: none;
     user-select: none;
     touch-action: none;
-    position: absolute;
+    position: fixed;
     width: 88px;
     min-height: 104px;
     background-color: #29e;
@@ -43,7 +47,27 @@ html, body {
     -webkit-transform: translate(0px, 0px);
             transform: translate(0px, 0px);
 }
-#drag-3 {
+#window-2{
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    touch-action: none;
+    position: fixed;
+    width: 88px;
+    min-height: 104px;
+    background-color: #29e;
+    color: white;
+    border-radius: 5px;
+    padding: 4%;
+    visibility: collapse; /* Makes window disappear */
+    box-sizing: border-box;
+    -webkit-transform: translate(0px, 0px);
+            transform: translate(0px, 0px);
+}
+#window-3 {
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -khtml-user-select: none;
@@ -92,6 +116,13 @@ dock {
     z-index: 0;
 }
 #currentTimeHourMinSec {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    touch-action: none;
     font-size: 100px;
     height: 100%;
     color: white;
@@ -113,37 +144,97 @@ dock {
 #topbarContainer {
     margin: 0;
 }
+#windowInner1 {
+    border-radius: 0px 0px 5px 5px;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    top: 37px;
+    height: calc(100% - 37px);
+    color: whitesmoke;
+    background-color: whitesmoke;
+    z-index: 10;
+}
+.close {
+  height: 22px;
+  width: 22px;
+  background-color: rgb(240, 87, 87);
+  border-radius: 50%;
+  display: inline-block;
+  z-index: 10;
+  position: absolute;
+  right: 7px;
+}
+.min {
+  height: 22px;
+  width: 22px;
+  background-color: rgb(240, 230, 87);
+  border-radius: 50%;
+  display: inline-block;
+  z-index: 10;
+  position: absolute;
+  right: 7px;
+  margin-right: 30px;
+}
+.max {
+  height: 22px;
+  width: 22px;
+  background-color: rgb(87, 240, 189);
+  border-radius: 50%;
+  display: inline-block;
+  z-index: 10;
+  position: absolute;
+  right: 67px;
+}
+.closeMinMaxWrapper {
+    top: 6px;
+    position: absolute;
+    right: 0px;
+}
 </style>
 
-<div id="topbarContainer">
-    <div id="topbar">
-        <div id="systemDropdownWrapper">
-            <select id="systemDropdown" onchange="systemDropdownInterpreter()">
-                <option value="none" id="none"> </option>
-                <option value="shutdown" id="shutdown">Shutdown</option>
-                <option value="sleep" id="sleep">Sleep</option>
-                <option value="restart" id="restart">Restart</option>
-            </select>
+<body>
+    <!--TOPBAR / MENUBAR-->
+    <div id="topbarContainer" class="menuBar">
+        <div id="topbar">
+            <div id="systemDropdownWrapper">
+                <select id="systemDropdown" onchange="systemDropdownInterpreter()">
+                    <option value="none" id="none"> </option>
+                    <option value="shutdown" id="shutdown">Shutdown</option>
+                    <option value="sleep" id="sleep">Sleep</option>
+                    <option value="restart" id="restart">Restart</option>
+                </select>
+            </div>
         </div>
     </div>
-</div>
 
-<body>
-
+    <!--TIME DISPLAY-->
     <div id="currentTimeHourMinSec"> </div>
-    <div id="drag-1" class="resize-drag window">
-        <button onclick="makeFullScreen();">Open Fullscreen</button>
+
+    <!--WINDOWS-->
+    <div id="window-1" class="resize-drag window">
+        <div class="closeMinMaxWrapper">
+            <span class="close"></span>
+            <span class="min"></span>
+            <span class="max"></span>
+        </div>
+        <div id="windowInner1" class="inner">
+            <button onclick="makeFullScreen();">Open Fullscreen</button>
+        </div>
     </div>
 
-    <div id="drag-2" class="resize-drag window">
+    <div id="window-2" class="resize-drag window">
         <button onclick="makeFullScreen();">Open Fullscreen</button>
         <a href="testing.html" target="_blank">testing.html</a>
     </div>
 
-    <div id="drag-3" class="resize-drag window">
+    <div id="window-3" class="resize-drag window">
         <button onclick="makeFullScreen();">Open Fullscreen</button>
     </div>
 
+    <dock>
+        <div class="dock"></div>
+    </dock>
 </body>
 
 <!--RESIZE-->
@@ -175,7 +266,7 @@ interact('.resize-drag')
     modifiers: [
       // minimum size
       interact.modifiers.restrictSize({
-        min: { width: 100, height: 50 }
+        min: { width: 100, height: 100 },
       })
     ],
   })
@@ -214,22 +305,4 @@ interact('.resize-drag')
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dock>
-    <div class="dock"></div>
-</dock>
 </html>
