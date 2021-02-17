@@ -1,7 +1,7 @@
 // target elements with the "draggable" class
 interact('.draggable')
     .draggable({
-        ignoreFrom: ".inner",
+        ignoreFrom: '.inner',
         listeners: {
                 // call this function on every dragmove event
                 move: dragMoveListener,

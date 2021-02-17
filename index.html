@@ -15,7 +15,8 @@
 /* CSS VARS */
 :root {
     --window-bar-color: #fff;
-    --close-min-max-size: 22px;
+    --close-min-max-size: 15px;
+    --close-min-max-spacing: 7px;
 }
 
 html, body {
@@ -39,8 +40,7 @@ html, body {
     position: fixed;
     width: 88px;
     min-height: 104px;
-    background-color: #29e;
-    color: white;
+    background-color: rgb(78, 79, 80);
     border-radius: 5px;
     padding: 4%;
     box-sizing: border-box;
@@ -149,42 +149,47 @@ dock {
     position: absolute;
     left: 0;
     width: 100%;
-    top: 37px;
-    height: calc(100% - 37px);
+    top: 27px;
+    height: calc(100% - 27px);
     color: whitesmoke;
     background-color: whitesmoke;
     z-index: 10;
 }
 .close {
-  height: 22px;
-  width: 22px;
+  height: var(--close-min-max-size);
+  width: var(--close-min-max-size);
   background-color: rgb(240, 87, 87);
   border-radius: 50%;
   display: inline-block;
   z-index: 10;
   position: absolute;
-  right: 7px;
+  right: var(--close-min-max-spacing);
+  border: none;
+  cursor: pointer;
 }
 .min {
-  height: 22px;
-  width: 22px;
+  height: var(--close-min-max-size);
+  width: var(--close-min-max-size);
   background-color: rgb(240, 230, 87);
   border-radius: 50%;
   display: inline-block;
   z-index: 10;
   position: absolute;
-  right: 7px;
-  margin-right: 30px;
+  right: calc(var(--close-min-max-spacing) + 23px);
+  border: none;
+  cursor: pointer;
 }
 .max {
-  height: 22px;
-  width: 22px;
+  height: var(--close-min-max-size);
+  width: var(--close-min-max-size);
   background-color: rgb(87, 240, 189);
   border-radius: 50%;
   display: inline-block;
   z-index: 10;
   position: absolute;
-  right: 67px;
+  right: calc(var(--close-min-max-spacing) + 46px);
+  border: none;
+  cursor: pointer;
 }
 .closeMinMaxWrapper {
     top: 6px;
@@ -214,9 +219,9 @@ dock {
     <!--WINDOWS-->
     <div id="window-1" class="resize-drag window">
         <div class="closeMinMaxWrapper">
-            <span class="close"></span>
-            <span class="min"></span>
-            <span class="max"></span>
+            <button class="close" onclick="closeWindow()"></button>
+            <button class="min" onclick="minWindow()"></button>
+            <button class="max" onclick="maxWindow()"></button>
         </div>
         <div id="windowInner1" class="inner">
             <button onclick="makeFullScreen();">Open Fullscreen</button>
@@ -233,7 +238,7 @@ dock {
     </div>
 
     <dock>
-        <div class="dock"></div>
+        <div class="dock" id="dock"></div>
     </dock>
 </body>
 
@@ -291,6 +296,21 @@ interact('.resize-drag')
     }  
 </script>
 
+<script>
+    function closeWindow() {
+        document.getElementById("window-1").style.visibility = "collapse"
+    }
+    function minWindow() {
+        document.getElementById("window-1").style.visibility = "collapse"
+    }
+    function maxWindow() {
+        document.getElementById("window-1").style.width = "100%"
+        document.getElementById("window-1").style.height = "calc(100% - 25px)"
+        document.getElementById("dock").style.visibility = "hidden"
+        document.getElementById("window-1").style.transform = "translate(0px, 0px)"
+    }
+</script>
+
 
 <!--CLOCK SCRIPT-->
 <script>
@@ -298,7 +318,7 @@ interact('.resize-drag')
         var get = new Date();
         currentTimeHourMinSec = get.getHours() + ':' + get.getMinutes() + ":" + get.getSeconds();
         document.getElementById('currentTimeHourMinSec').innerHTML = currentTimeHourMinSec;
-        setTimeout(getTime, 100);
+        setTimeout(getTime, 1000);
     }
     getTime();
 </script>
