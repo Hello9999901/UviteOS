@@ -4,10 +4,10 @@ Run function on start:
 Run JS script on window load:
 ``` html
 <script>
-function myFunction() {
+  function myFunction() {
     alert('ok');
-}
-window.onload = myFunction;
+  }
+  window.onload = myFunction;
 </script>
 ```
 –––––––––––––––––––––––––––––––––––––––––––––––––––––
@@ -16,7 +16,7 @@ Declare CSS variables:
 :root {} - declare globally
 Usage Ex:
 :root {
-  --white: #fff; (declare var)
+--white: #fff; (declare var)
 }
 body { background-color: var(--white); } (use var)
 ```
@@ -68,19 +68,19 @@ interact.js click, db click, and hold:
   }
 </style>
 <script>
-interact('.tap-target')
-  .on('tap', function (event) {
-    event.currentTarget.classList.toggle('switch-bg')
-    event.preventDefault()
-  })
-  .on('doubletap', function (event) {
-    event.currentTarget.classList.toggle('large')
-    event.currentTarget.classList.remove('rotate')
-    event.preventDefault()
-  })
-  .on('hold', function (event) {
-    event.currentTarget.classList.toggle('rotate')
-    event.currentTarget.classList.remove('large')
-  })
+  interact('.tap-target')
+    .on('tap', function (event) {
+      event.currentTarget.classList.toggle('switch-bg')
+      event.preventDefault()
+    })
+    .on('doubletap', function (event) {
+      event.currentTarget.classList.toggle('large')
+      event.currentTarget.classList.remove('rotate')
+      event.preventDefault()
+    })
+    .on('hold', function (event) {
+      event.currentTarget.classList.toggle('rotate')
+      event.currentTarget.classList.remove('large')
+    })
 </script>
 ```

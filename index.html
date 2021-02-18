@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>UviteOS - Stream the Future</title>
     <meta charset="UTF-8">
@@ -12,190 +13,218 @@
 
 
 <style>
-/* CSS VARS */
-:root {
-    --window-bar-color: #fff;
-    --close-min-max-size: 15px;
-    --close-min-max-spacing: 7px;
-}
+    /* CSS VARS */
+    :root {
+        --window-bar-color: #fff;
+        --close-min-max-size: 15px;
+        --close-min-max-spacing: 7px;
+    }
 
-html, body {
-    background-image: url('media/default_bg.jpg');
-    background-repeat: no-repeat;
-    background-size: 100%, auto;
-    overflow: hidden;
-    margin: 0px;
-    height: 100%;
-    z-index: 1;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-}
-#window-1{
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    touch-action: none;
-    position: fixed;
-    width: 88px;
-    min-height: 104px;
-    background-color: rgb(78, 79, 80);
-    border-radius: 5px;
-    padding: 4%;
-    box-sizing: border-box;
-    -webkit-transform: translate(0px, 0px);
-            transform: translate(0px, 0px);
-}
-#window-2{
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    touch-action: none;
-    position: fixed;
-    width: 88px;
-    min-height: 104px;
-    background-color: #29e;
-    color: white;
-    border-radius: 5px;
-    padding: 4%;
-    visibility: collapse; /* Makes window disappear */
-    box-sizing: border-box;
-    -webkit-transform: translate(0px, 0px);
-            transform: translate(0px, 0px);
-}
-#window-3 {
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    touch-action: none;
-    position: absolute;
-    width: 88px;
-    min-height: 104px;
-    background-color: #29e;
-    color: white;
-    border-radius: 5px;
-    padding: 4%;
-    visibility: collapse; /* Makes window disappear */
-    box-sizing: border-box;
-    -webkit-transform: translate(0px, 0px);
-            transform: translate(0px, 0px);   
-}
-.dock {
-    position: fixed;
-    bottom: 10px; /* Lift the dock, or else it is halfway inside the bottom edge */
-    border-radius: 15px;
-    text-align: center;
-    width: 75%;
-    height: 100px;
-    background-color: rgba(255, 255, 255, 0.4);
-    -webkit-backdrop-filter: blur(10px); /* Safari */
-    backdrop-filter: blur(10px); /* Other Browsers */
-    border: rgba(214, 214, 214, 0.28) solid 1px;
-}
-dock {
-    height: calc(200% - 110px);
-    width: 100%;
-    align-items: center;
-    display: flex;
-    justify-content: center;
-}
-#topbar {
-    text-align: left;
-    width: 100%;
-    height: 25px;
-    background-color: rgba(255, 255, 255, 0.25);
-    -webkit-backdrop-filter: blur(100px); /* Safari */
-    backdrop-filter: blur(10px); /* Other Browsers */ 
-    z-index: 0;
-}
-#currentTimeHourMinSec {
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    touch-action: none;
-    font-size: 100px;
-    height: 100%;
-    color: white;
-    position: absolute;
-    width: 100%;
-    align-items: center;
-    display: flex;
-    justify-content: center;
-}
-#homeIcon {
-    width: 25px;
-    height: auto;
-    filter: invert(1);
-}
-#systemDropdown {
-    width: 100px;
-    position: absolute;
-}
-#topbarContainer {
-    margin: 0;
-}
-#windowInner1 {
-    border-radius: 0px 0px 5px 5px;
-    position: absolute;
-    left: 0;
-    width: 100%;
-    top: 27px;
-    height: calc(100% - 27px);
-    color: whitesmoke;
-    background-color: whitesmoke;
-    z-index: 10;
-}
-.close {
-  height: var(--close-min-max-size);
-  width: var(--close-min-max-size);
-  background-color: rgb(240, 87, 87);
-  border-radius: 50%;
-  display: inline-block;
-  z-index: 10;
-  position: absolute;
-  right: var(--close-min-max-spacing);
-  border: none;
-  cursor: pointer;
-}
-.min {
-  height: var(--close-min-max-size);
-  width: var(--close-min-max-size);
-  background-color: rgb(240, 230, 87);
-  border-radius: 50%;
-  display: inline-block;
-  z-index: 10;
-  position: absolute;
-  right: calc(var(--close-min-max-spacing) + 23px);
-  border: none;
-  cursor: pointer;
-}
-.max {
-  height: var(--close-min-max-size);
-  width: var(--close-min-max-size);
-  background-color: rgb(87, 240, 189);
-  border-radius: 50%;
-  display: inline-block;
-  z-index: 10;
-  position: absolute;
-  right: calc(var(--close-min-max-spacing) + 46px);
-  border: none;
-  cursor: pointer;
-}
-.closeMinMaxWrapper {
-    top: 6px;
-    position: absolute;
-    right: 0px;
-}
+    html,
+    body {
+        background-image: url('media/default_bg.jpg');
+        background-repeat: no-repeat;
+        background-size: 100%, auto;
+        overflow: hidden;
+        margin: 0px;
+        height: 100%;
+        z-index: 1;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+
+    #window-1 {
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        touch-action: none;
+        position: fixed;
+        width: 88px;
+        min-height: 104px;
+        background-color: rgb(78, 79, 80);
+        border-radius: 5px;
+        padding: 4%;
+        border-width: 100px;
+        border-color: transparent;
+        box-sizing: border-box;
+        -webkit-transform: translate(0px, 0px);
+        transform: translate(0px, 0px);
+    }
+
+    #window-2 {
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        touch-action: none;
+        position: fixed;
+        width: 88px;
+        min-height: 104px;
+        background-color: #29e;
+        color: white;
+        border-radius: 5px;
+        padding: 4%;
+        visibility: collapse;
+        /* Makes window disappear */
+        box-sizing: border-box;
+        -webkit-transform: translate(0px, 0px);
+        transform: translate(0px, 0px);
+    }
+
+    #window-3 {
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        touch-action: none;
+        position: absolute;
+        width: 88px;
+        min-height: 104px;
+        background-color: #29e;
+        color: white;
+        border-radius: 5px;
+        padding: 4%;
+        visibility: collapse;
+        /* Makes window disappear */
+        box-sizing: border-box;
+        -webkit-transform: translate(0px, 0px);
+        transform: translate(0px, 0px);
+    }
+
+    .dock {
+        position: fixed;
+        bottom: 10px;
+        /* Lift the dock, or else it is halfway inside the bottom edge */
+        border-radius: 15px;
+        text-align: center;
+        width: 75%;
+        height: 100px;
+        background-color: rgba(255, 255, 255, 0.4);
+        -webkit-backdrop-filter: blur(10px);
+        /* Safari */
+        backdrop-filter: blur(10px);
+        /* Other Browsers */
+        border: rgba(214, 214, 214, 0.28) solid 1px;
+    }
+
+    dock {
+        height: calc(200% - 110px);
+        width: 100%;
+        align-items: center;
+        display: flex;
+        justify-content: center;
+    }
+
+    #topbar {
+        text-align: left;
+        width: 100%;
+        height: 25px;
+        background-color: rgba(255, 255, 255, 0.25);
+        -webkit-backdrop-filter: blur(100px);
+        /* Safari */
+        backdrop-filter: blur(10px);
+        /* Other Browsers */
+        z-index: 0;
+    }
+
+    #currentTimeHourMinSec {
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        touch-action: none;
+        font-size: 100px;
+        height: 100%;
+        color: white;
+        position: absolute;
+        width: 100%;
+        align-items: center;
+        display: flex;
+        justify-content: center;
+    }
+
+    #homeIcon {
+        width: 25px;
+        height: auto;
+        filter: invert(1);
+    }
+
+    #systemDropdown {
+        width: 100px;
+        position: absolute;
+    }
+
+    #topbarContainer {
+        margin: 0;
+    }
+
+    #windowInner1 {
+        border-radius: 0px 0px 5px 5px;
+        position: absolute;
+        left: 0;
+        width: 100%;
+        top: 27px;
+        height: calc(100% - 27px);
+        color: whitesmoke;
+        background-color: whitesmoke;
+        z-index: 10;
+    }
+
+    .close {
+        height: var(--close-min-max-size);
+        width: var(--close-min-max-size);
+        background-color: rgb(240, 87, 87);
+        border-radius: 50%;
+        display: inline-block;
+        z-index: 10;
+        position: absolute;
+        right: var(--close-min-max-spacing);
+        border: none;
+        cursor: pointer;
+    }
+
+    .min {
+        height: var(--close-min-max-size);
+        width: var(--close-min-max-size);
+        background-color: rgb(240, 230, 87);
+        border-radius: 50%;
+        display: inline-block;
+        z-index: 10;
+        position: absolute;
+        right: calc(var(--close-min-max-spacing) + 23px);
+        border: none;
+        cursor: pointer;
+    }
+
+    .max {
+        height: var(--close-min-max-size);
+        width: var(--close-min-max-size);
+        background-color: rgb(87, 240, 189);
+        border-radius: 50%;
+        display: inline-block;
+        z-index: 10;
+        position: absolute;
+        right: calc(var(--close-min-max-spacing) + 46px);
+        border: none;
+        cursor: pointer;
+    }
+
+    .closeMinMaxWrapper {
+        top: 6px;
+        position: absolute;
+        right: 0px;
+    }
+    #icon1 {
+        position: absolute;
+    }
 </style>
 
 <body>
@@ -213,10 +242,26 @@ dock {
         </div>
     </div>
 
+    <!--ICONS-->
+    <div id="icon1">
+        <img src="media/Icons/UviteIcon.svg" width="100px" height="100px">
+    </div>
+
     <!--TIME DISPLAY-->
     <div id="currentTimeHourMinSec"> </div>
 
     <!--WINDOWS-->
+    <div id="window-1" class="resize-drag window">
+        <div class="closeMinMaxWrapper">
+            <button class="close" onclick="this.parentElement.style.display = 'collapse';"></button>
+            <button class="min" onclick="this.parentElement.style.display = 'collapse';"></button>
+            <button class="max" onclick="maxWindow()"></button>
+        </div>
+        <div id="windowInner1" class="inner">
+            <button onclick="makeFullScreen();">Open Fullscreen</button>
+        </div>
+    </div>
+
     <div id="window-1" class="resize-drag window">
         <div class="closeMinMaxWrapper">
             <button class="close" onclick="closeWindow()"></button>
@@ -228,13 +273,15 @@ dock {
         </div>
     </div>
 
-    <div id="window-2" class="resize-drag window">
-        <button onclick="makeFullScreen();">Open Fullscreen</button>
-        <a href="testing.html" target="_blank">testing.html</a>
-    </div>
-
-    <div id="window-3" class="resize-drag window">
-        <button onclick="makeFullScreen();">Open Fullscreen</button>
+    <div id="window-1" class="resize-drag window">
+        <div class="closeMinMaxWrapper">
+            <button class="close" onclick="closeWindow()"></button>
+            <button class="min" onclick="minWindow()"></button>
+            <button class="max" onclick="maxWindow()"></button>
+        </div>
+        <div id="windowInner1" class="inner">
+            <button onclick="makeFullScreen();">Open Fullscreen</button>
+        </div>
     </div>
 
     <dock>
@@ -244,40 +291,50 @@ dock {
 
 <!--RESIZE-->
 <script>
-interact('.resize-drag')
-  .resizable({
-    // resize from all edges and corners
-    edges: { left: true, right: true, bottom: true, top: true },
+    interact('.resize-drag')
+        .resizable({
+            // resize from all edges and corners
+            edges: {
+                left: true,
+                right: true,
+                bottom: true,
+                top: true
+            },
 
-    listeners: {
-      move (event) {
-        var target = event.target
-        var x = (parseFloat(target.getAttribute('data-x')) || 0)
-        var y = (parseFloat(target.getAttribute('data-y')) || 0)
+            listeners: {
+                move(event) {
+                    var target = event.target
+                    var x = (parseFloat(target.getAttribute('data-x')) || 0)
+                    var y = (parseFloat(target.getAttribute('data-y')) || 0)
 
-        // update the element's style
-        target.style.width = event.rect.width + 'px'
-        target.style.height = event.rect.height + 'px'
-        // translate when resizing from top or left edges
-        x += event.deltaRect.left
-        y += event.deltaRect.top
-        target.style.webkitTransform = target.style.transform =
-          'translate(' + x + 'px,' + y + 'px)'
+                    // update the element's style
+                    target.style.width = event.rect.width + 'px'
+                    target.style.height = event.rect.height + 'px'
+                    // translate when resizing from top or left edges
+                    x += event.deltaRect.left
+                    y += event.deltaRect.top
+                    target.style.webkitTransform = target.style.transform =
+                        'translate(' + x + 'px,' + y + 'px)'
 
-        target.setAttribute('data-x', x)
-        target.setAttribute('data-y', y)
-      }
-    },
-    modifiers: [
-      // minimum size
-      interact.modifiers.restrictSize({
-        min: { width: 100, height: 100 },
-      })
-    ],
-  })
-  .draggable({
-    listeners: { move: window.dragMoveListener },
-  })
+                    target.setAttribute('data-x', x)
+                    target.setAttribute('data-y', y)
+                }
+            },
+            modifiers: [
+                // minimum size
+                interact.modifiers.restrictSize({
+                    min: {
+                        width: 100,
+                        height: 100
+                    },
+                })
+            ],
+        })
+        .draggable({
+            listeners: {
+                move: window.dragMoveListener
+            },
+        })
 </script>
 
 <script>
@@ -286,23 +343,25 @@ interact('.resize-drag')
         var optionParsed = option.options[systemDropdown.selectedIndex].text
         if (optionParsed == "Shutdown") {
             alert("Shutdown")
-        }
-        else if (optionParsed == "Restart") {
+        } else if (optionParsed == "Restart") {
             alert("Restart")
-        }
-        else if (optionParsed == "Sleep") {
+        } else if (optionParsed == "Sleep") {
             alert("Sleep")
         }
-    }  
+    }
 </script>
 
 <script>
     function closeWindow() {
         document.getElementById("window-1").style.visibility = "collapse"
+        document.getElementById("dock").style.visibility = "visible"
     }
+
     function minWindow() {
         document.getElementById("window-1").style.visibility = "collapse"
+        document.getElementById("dock").style.visibility = "visible"
     }
+
     function maxWindow() {
         document.getElementById("window-1").style.width = "100%"
         document.getElementById("window-1").style.height = "calc(100% - 25px)"
