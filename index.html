@@ -222,8 +222,23 @@
         position: absolute;
         right: 0px;
     }
+
     #icon1 {
         position: absolute;
+        cursor: pointer;
+        z-index: 10;
+        padding-bottom: 0px;
+        margin-bottom: 0px;
+    }
+    #icon1 #description {
+        top: 85%;
+        position: absolute;
+        cursor: pointer;
+        z-index: 10;
+        color: white;
+        font-size: 10px;
+        text-align: center;
+        margin: auto;
     }
 </style>
 
@@ -243,36 +258,17 @@
     </div>
 
     <!--ICONS-->
-    <div id="icon1">
+    <div onclick="showWindow()" id="icon1">
         <img src="media/Icons/UviteIcon.svg" width="100px" height="100px">
+        <h1 id="description">
+            Open New Window Test
+        </h1>
     </div>
 
     <!--TIME DISPLAY-->
     <div id="currentTimeHourMinSec"> </div>
 
     <!--WINDOWS-->
-    <div id="window-1" class="resize-drag window">
-        <div class="closeMinMaxWrapper">
-            <button class="close" onclick="this.parentElement.style.display = 'collapse';"></button>
-            <button class="min" onclick="this.parentElement.style.display = 'collapse';"></button>
-            <button class="max" onclick="maxWindow()"></button>
-        </div>
-        <div id="windowInner1" class="inner">
-            <button onclick="makeFullScreen();">Open Fullscreen</button>
-        </div>
-    </div>
-
-    <div id="window-1" class="resize-drag window">
-        <div class="closeMinMaxWrapper">
-            <button class="close" onclick="closeWindow()"></button>
-            <button class="min" onclick="minWindow()"></button>
-            <button class="max" onclick="maxWindow()"></button>
-        </div>
-        <div id="windowInner1" class="inner">
-            <button onclick="makeFullScreen();">Open Fullscreen</button>
-        </div>
-    </div>
-
     <div id="window-1" class="resize-drag window">
         <div class="closeMinMaxWrapper">
             <button class="close" onclick="closeWindow()"></button>
@@ -367,6 +363,11 @@
         document.getElementById("window-1").style.height = "calc(100% - 25px)"
         document.getElementById("dock").style.visibility = "hidden"
         document.getElementById("window-1").style.transform = "translate(0px, 0px)"
+    }
+
+    function showWindow() {
+        document.getElementById("window-1").style.visibility = "visible"
+        document.getElementById("dock").style.visibility = "visible"
     }
 </script>
 
