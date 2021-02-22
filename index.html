@@ -51,6 +51,7 @@
         box-sizing: border-box;
         -webkit-transform: translate(0px, 0px);
         transform: translate(0px, 0px);
+        z-index: 100;
     }
 
     #window-2 {
@@ -144,7 +145,7 @@
         font-size: 100px;
         height: 100%;
         color: white;
-        position: absolute;
+        position: fixed;
         width: 100%;
         align-items: center;
         display: flex;
@@ -224,21 +225,17 @@
     }
 
     #icon1 {
-        position: sticky;
         cursor: pointer;
-        z-index: 10;
+        z-index: 1;
         padding-bottom: 0px;
         margin-bottom: 0px;
     }
     #icon1 #description {
-        position: absolute;
         top: 85%;
         cursor: pointer;
-        z-index: 10;
+        z-index: 1;
         color: white;
         font-size: 10px;
-        text-align: center;
-        margin: auto;
     }
 </style>
 
